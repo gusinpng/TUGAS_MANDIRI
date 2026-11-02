@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Edit Buku</h1>
+        <p>Silakan ubah informasi buku berikut.</p>
+
+        <form action="/buku/edit/<%= buku.id %>" method="POST">
+
+            <label>Judul Buku</label>
+            <input type="text" name="judul"
+                value="<%= buku.judul %>" required>
+
+            <label>Penulis</label>
+            <input type="text" name="penulis"
+                value="<%= buku.penulis %>" required>
+
+            <label>Penerbit</label>
+            <input type="text" name="penerbit"
+                value="<%= buku.penerbit || '' %>">
+
+            <label>Kategori</label>
+            <select name="kategori" required>
+                <option value="Teknologi"
+                    <%= buku.kategori === 'Teknologi' ? 'selected' : '' %>>
+                    Teknologi
+                </option>
+
+                <option value="Pendidikan"
+                    <%= buku.kategori === 'Pendidikan' ? 'selected' : '' %>>
+                    Pendidikan
+                </option>
+
+                <option value="Novel"
+                    <%= buku.kategori === 'Novel' ? 'selected' : '' %>>
+                    Novel
+                </option>
+
+                <option value="Sejarah"
+                    <%= buku.kategori === 'Sejarah' ? 'selected' : '' %>>
+                    Sejarah
+                </option>
+            </select>
+
+            <label>Deskripsi</label>
+            <textarea name="deskripsi"><%= buku.deskripsi || '' %></textarea>
+
+            <label>Tanggal Terbit</label>
+            <input type="date" name="tanggal_terbit"
+                value="<%= buku.tanggal_terbit ? new Date(buku.tanggal_terbit).toISOString().split('T')[0] : '' %>">
+
+            <label>Stok Buku</label>
+            <input type="number" name="stok"
+                value="<%= buku.stok %>" min="0" required>
+
+            <button type="submit">Simpan Perubahan</button>
+
+            <a href="/buku">Kembali</a>
+
+        </form>
+    </div>
+
+</body>
+</html>

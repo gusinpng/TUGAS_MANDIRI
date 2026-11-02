@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Perpustakaan Digital</h1>
+        <p>Daftar koleksi buku perpustakaan</p>
+
+        <a href="/buku/tambah" class="btn-tambah">
+            + Tambah Buku
+        </a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul Buku</th>
+                    <th>Penulis</th>
+                    <th>Penerbit</th>
+                    <th>Kategori</th>
+                    <th>Tanggal Terbit</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                </tr>   
+            </thead>
+
+            <tbody>
+                <% if (buku.length > 0) { %>
+                    <% buku.forEach((item, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= item.judul %></td>
+                            <td><%= item.penulis %></td>
+                            <td><%= item.penerbit || '-' %></td>
+                            <td><%= item.kategori %></td>
+                            <td>
+                                <%= item.tanggal_terbit
+                                ? new Date(item.tanggal_terbit).toLocaleDateString('id-ID', {
+                                day: '2-digit',
+                                month: 'long',
+                                year: 'numeric'
+                             })
+                             : '-' %>
+                            </td>
+                            <td><%= Number(item.stok).toLocaleString('id-ID') %></td>  
+                            <td>
+                                <a href="/buku/edit/<%= item.id %>">Edit</a>
+                                <form action="/buku/hapus/<%= item.id %>" method="POST" style="display: inline;">
+                                 <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">Hapus</button>
+                                </form> 
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="8">Belum ada data buku.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

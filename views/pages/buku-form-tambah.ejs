@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tambah Buku</h1>
+        <p>Silakan isi formulir berikut untuk menambahkan buku.</p>
+
+        <form action="/buku/tambah" method="POST">
+
+            <label>Judul Buku</label>
+            <input type="text" name="judul" required>
+
+            <label>Penulis</label>
+            <input type="text" name="penulis" required>
+
+            <label>Penerbit</label>
+            <input type="text" name="penerbit">
+
+            <label>Kategori</label>
+            <select name="kategori" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="Teknologi">Teknologi</option>
+                <option value="Pendidikan">Pendidikan</option>
+                <option value="Novel">Novel</option>
+                <option value="Sejarah">Sejarah</option>
+            </select>
+
+            <label>Deskripsi</label>
+            <textarea name="deskripsi"></textarea>
+
+            <label>Tanggal Terbit</label>
+            <input type="date" name="tanggal_terbit">
+
+            <label>Stok Buku</label>
+            <input type="number" name="stok" min="0" value="0" required>
+
+            <button type="submit">Simpan Buku</button>
+
+            <a href="/buku">Kembali</a>
+
+        </form>
+    </div>
+
+</body>
+</html>
